@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   check:
+    if: vars.RADAR_SCHEDULER_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
