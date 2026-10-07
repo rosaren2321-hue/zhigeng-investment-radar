@@ -1,10 +1,12 @@
 # 知更 · 投资风险雷达
 
-[在线体验](https://watchlane-investment-radar.rosaren2321.chatgpt.site) · [源码仓库](https://github.com/rosaren2321-hue/zhigeng-investment-radar)
+[在线体验](https://watchlane-investment-radar.rosaren2321.chatgpt.site) · [源码仓库](https://github.com/rosaren2321-hue/zhigeng-investment-radar) · [98 秒演示与源码下载](https://github.com/rosaren2321-hue/zhigeng-investment-radar/releases/tag/v1.0.0-demo)
 
 把自然语言关注点转换为可检查、可修改、持续运行的监控任务；每次触发或未触发都能查到规则版本与数据证据。
 
 > **本项目目前使用明确标注的合成演示数据。** 不代表实时股票价格、真实公告、市场热度或实际财报日历。未取得扶摇 / iFinD 的访问权限，不假称已接通。
+
+> **验收状态**：35 项规则/解析测试、23 项本地集成测试、23 项线上集成测试通过。DeepSeek 适配已实现，真实调用待用户配置密钥；当前在线产品使用明确标注的备用解析。自动调度已配置，已有一次手动触发的后台执行凭证，尚未验证自动运行的准点性。
 
 ## 目标用户与核心设计
 
