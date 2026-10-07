@@ -1,0 +1,25 @@
+name: Run monitoring scheduler
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '2-59/5 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: investment-radar-scheduler
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check due tasks
+        env:
+          RADAR_SITE_URL: ${{ secrets.RADAR_SITE_URL }}
+          RADAR_CRON_SECRET: ${{ secrets.RADAR_CRON_SECRET }}
+          RADAR_SITE_BYPASS: ${{ secrets.RADAR_SITE_BYPASS }}
+        run: node scripts/scheduler.mjs

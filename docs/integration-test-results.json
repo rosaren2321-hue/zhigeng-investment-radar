@@ -1,0 +1,100 @@
+{
+  "testedAt": "2026-10-07T07:38:16.423Z",
+  "target": "http://127.0.0.1:5173",
+  "passed": 23,
+  "total": 23,
+  "results": [
+    {
+      "name": "首次访问建立 3 个持久任务",
+      "passed": true
+    },
+    {
+      "name": "不同匿名浏览器空间隔离",
+      "passed": true
+    },
+    {
+      "name": "读取他人任务返回 404",
+      "passed": true
+    },
+    {
+      "name": "重复读取保留任务编号",
+      "passed": true
+    },
+    {
+      "name": "非法规则不能落库",
+      "passed": true
+    },
+    {
+      "name": "不受信任来源不能写入",
+      "passed": true
+    },
+    {
+      "name": "未授权定时调用返回 401",
+      "passed": true
+    },
+    {
+      "name": "创建即完成首次检查并形成提醒",
+      "passed": true
+    },
+    {
+      "name": "同快照重复检查被去重",
+      "passed": true
+    },
+    {
+      "name": "新证据在冷却期内被抑制",
+      "passed": true
+    },
+    {
+      "name": "stale 不产生误报",
+      "passed": true
+    },
+    {
+      "name": "conflict 不产生误报",
+      "passed": true
+    },
+    {
+      "name": "failure 不产生误报",
+      "passed": true
+    },
+    {
+      "name": "恢复后重新评估并保留恢复标记",
+      "passed": true
+    },
+    {
+      "name": "编辑创建新版本，旧版记录可追溯",
+      "passed": true
+    },
+    {
+      "name": "陈旧版本修改被拒绝",
+      "passed": true
+    },
+    {
+      "name": "新版本使用新阈值判断",
+      "passed": true
+    },
+    {
+      "name": "暂停任务不能手动触发",
+      "passed": true
+    },
+    {
+      "name": "恢复后可再次检查",
+      "passed": true
+    },
+    {
+      "name": "并发检查不会产生重复提醒",
+      "passed": true
+    },
+    {
+      "name": "提醒支持标记已读",
+      "passed": true
+    },
+    {
+      "name": "证据导出包含每条规则版本和检查",
+      "passed": true
+    },
+    {
+      "name": "交易执行被拒绝且无任务创建",
+      "passed": true
+    }
+  ]
+}
