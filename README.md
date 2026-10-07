@@ -1,12 +1,12 @@
 # 知更 · 投资风险雷达
 
-[在线体验](https://watchlane-investment-radar.rosaren2321.chatgpt.site) · [源码仓库](https://github.com/rosaren2321-hue/zhigeng-investment-radar) · [98 秒演示与源码下载](https://github.com/rosaren2321-hue/zhigeng-investment-radar/releases/tag/v1.0.0-demo)
+[在线体验](https://watchlane-investment-radar.rosaren2321.chatgpt.site) · [源码仓库](https://github.com/rosaren2321-hue/zhigeng-investment-radar) · [103 秒演示与源码下载](https://github.com/rosaren2321-hue/zhigeng-investment-radar/releases/tag/v1.1.0-demo)
 
 把自然语言关注点转换为可检查、可修改、持续运行的监控任务；每次触发或未触发都能查到规则版本与数据证据。
 
 > **本项目目前使用明确标注的合成演示数据。** 不代表实时股票价格、真实公告、市场热度或实际财报日历。未取得扶摇 / iFinD 的访问权限，不假称已接通。
 
-> **验收状态**：35 项规则/解析测试、23 项本地集成测试、23 项线上集成测试通过。DeepSeek 适配已实现，真实调用待用户配置密钥；当前在线产品使用明确标注的备用解析。自动调度已配置，已有一次手动触发的后台执行凭证，尚未验证自动运行的准点性。
+> **验收状态**：35 项规则/解析测试、23 项本地集成测试、23 项线上集成测试通过。DeepSeek 已接通：6 个场景各重复 3 次，18 / 18 次真实调用通过；另有 6 / 6 项线上模型链路检查通过。样本有限，不据此宣称稳定准确率。自动调度已配置，已有一次手动触发的后台执行凭证，尚未验证自动运行的准点性。
 
 ## 目标用户与核心设计
 
@@ -23,7 +23,7 @@
 
 ## AI 的角色与验证
 
-DeepSeek 仅把用户文本编译为待确认规则，不执行交易、启动任务或判断行情。使用官方 `/chat/completions` 接口、JSON 输出与服务端规则校验。提示词版本为 `rule-compiler-v1.0`；模型名默认 `deepseek-flash`，以配置为准。
+DeepSeek 仅把用户文本编译为待确认规则，不执行交易、启动任务或判断行情。使用官方 `/chat/completions` 接口、JSON 输出与服务端规则校验。提示词版本为 `rule-compiler-v1.2`；模型名默认 `deepseek-flash`，以配置为准。
 
 用户必须检查并确认草案。缺失阈值、含糊单位、多标的、未支持指标或时段需要澄清。模型超时、HTTP 错误、空输出、无效 JSON 或字段校验失败时降级到明确标注的有限模板；不冒充模型调用成功。
 
@@ -75,7 +75,9 @@ node tests/integration.mjs
 - `tests/engine.test.ts`：35 项纯规则、边界、异常与模型接口模拟测试。
 - `tests/integration.mjs`：23 项真实本地 API / D1 集成测试，涵盖持久化、隔离、CSRF、版本、并发去重及导出。
 - 测试报告：`docs/unit-test-results.txt`、`docs/local-integration-test-results.json`、`docs/production-integration-test-results.json`。
-- 浏览器验证、线上调度与真实模型测试结果另外记录，不能把模拟测试当成真实供应商验证。
+- `tests/live-ai.mjs`：6 个场景各 3 次真实 DeepSeek 调用，18 / 18 通过；报告 `docs/live-ai-results.json`。
+- `tests/production-ai.mjs`：6 项生产模型链路检查（含 4 次真实调用），6 / 6 通过；报告 `docs/production-ai-results.json`。
+- 初始失败样本和提示词迭代见 `docs/AI使用与验证记录.md`；有限验收样本不作为稳定准确率估计。
 
 ## 已知边界与未做事项
 

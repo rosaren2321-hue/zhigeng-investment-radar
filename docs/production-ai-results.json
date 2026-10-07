@@ -1,0 +1,184 @@
+{
+  "testedAt": "2026-10-07T08:22:26.426Z",
+  "target": "https://watchlane-investment-radar.rosaren2321.chatgpt.site",
+  "model": "deepseek-flash",
+  "promptVersion": "rule-compiler-v1.2",
+  "passed": 6,
+  "total": 6,
+  "note": "生产环境验收；4 次真实模型调用，单次样本，不作为稳定准确率估计。",
+  "results": [
+    {
+      "name": "线上服务端模型配置生效",
+      "passed": true,
+      "durationMs": 5047,
+      "details": {
+        "model": {
+          "configured": true,
+          "name": "deepseek-flash",
+          "promptVersion": "rule-compiler-v1.2"
+        }
+      }
+    },
+    {
+      "name": "价格草案经确认后形成监控",
+      "passed": true,
+      "durationMs": 1958,
+      "details": {
+        "input": "贵州茅台低于1700元时提醒我，每5分钟检查，冷却30分钟。",
+        "response": {
+          "mode": "deepseek",
+          "model": "deepseek-flash",
+          "promptVersion": "rule-compiler-v1.2",
+          "rule": {
+            "title": "贵州茅台价格低于1700元提醒",
+            "symbol": "600519.SH",
+            "logic": "all",
+            "conditions": [
+              {
+                "kind": "price",
+                "op": "lt",
+                "value": 1700
+              }
+            ],
+            "intervalMin": 5,
+            "cooldownMin": 30
+          },
+          "questions": [],
+          "warnings": [
+            "“低于1700元”按当前值阈值判断，不是穿越检测。"
+          ],
+          "refused": false,
+          "usage": {
+            "prompt_tokens": 823,
+            "completion_tokens": 85,
+            "total_tokens": 908,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 183
+          }
+        }
+      }
+    },
+    {
+      "name": "线上公告关键词解析",
+      "passed": true,
+      "durationMs": 6207,
+      "details": {
+        "input": "宁德时代出现回购公告时提醒我。",
+        "response": {
+          "mode": "deepseek",
+          "model": "deepseek-flash",
+          "promptVersion": "rule-compiler-v1.2",
+          "rule": {
+            "title": "宁德时代回购公告提醒",
+            "symbol": "300750.SZ",
+            "logic": "all",
+            "conditions": [
+              {
+                "kind": "event",
+                "keyword": "回购"
+              }
+            ],
+            "intervalMin": 5,
+            "cooldownMin": 30
+          },
+          "questions": [],
+          "warnings": [
+            "未指定检查间隔，默认5分钟。",
+            "未指定冷却时间，默认30分钟。"
+          ],
+          "refused": false,
+          "usage": {
+            "prompt_tokens": 813,
+            "completion_tokens": 80,
+            "total_tokens": 893,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 173
+          }
+        }
+      }
+    },
+    {
+      "name": "线上财报日历解析",
+      "passed": true,
+      "durationMs": 6476,
+      "details": {
+        "input": "招商银行财报发布前3天提醒我，每60分钟检查。",
+        "response": {
+          "mode": "deepseek",
+          "model": "deepseek-flash",
+          "promptVersion": "rule-compiler-v1.2",
+          "rule": {
+            "title": "招商银行财报日历",
+            "symbol": "600036.SH",
+            "logic": "all",
+            "conditions": [
+              {
+                "kind": "calendar",
+                "daysBefore": 3
+              }
+            ],
+            "intervalMin": 60,
+            "cooldownMin": 30
+          },
+          "questions": [],
+          "warnings": [
+            "未指定冷却时间，默认30分钟。"
+          ],
+          "refused": false,
+          "usage": {
+            "prompt_tokens": 819,
+            "completion_tokens": 70,
+            "total_tokens": 889,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 179
+          }
+        }
+      }
+    },
+    {
+      "name": "含糊阈值需澄清且不会自动创建任务",
+      "passed": true,
+      "durationMs": 1355,
+      "details": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请给出“大跌”的具体阈值，例如日内跌幅百分比（如跌幅超过5%）或具体价格（如跌破1500元）。"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 811,
+          "completion_tokens": 48,
+          "total_tokens": 859,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 171
+        }
+      }
+    },
+    {
+      "name": "真实模型调用与检查证据持久保存",
+      "passed": true,
+      "durationMs": 968,
+      "details": {
+        "modelRecordCount": 4,
+        "taskId": "355b1a4b-050d-4219-9cef-6ec7f71ef765",
+        "runCount": 1
+      }
+    }
+  ]
+}

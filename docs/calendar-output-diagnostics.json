@@ -1,0 +1,130 @@
+[
+  {
+    "trial": 1,
+    "mode": "template",
+    "raw": {
+      "id": "dbbc42e3-ecbc-47c6-a408-cf9c6e14bc8e",
+      "object": "chat.completion",
+      "created": 1791361067,
+      "model": "deepseek-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"rule\":{\"title\":\"招商银行财报披露前3天提醒\",\"symbol\":\"600036.SH\",\"logic\":\"all\",\"conditions\":[{\"kind\":\"calendar\",\"daysBefore\":3}],\"intervalMin\":60,\"cooldownMin\":30},\"questions\":[],\"warnings\":[\"未指定冷却时间，默认30分钟。\",\"calendar条件按财报披露日前N天（按24小时向上取整）计算，需确认财报披露日期来源。\"]},\"refused\":false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 102,
+        "total_tokens": 737,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 251
+      },
+      "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+    }
+  },
+  {
+    "trial": 2,
+    "mode": "template",
+    "raw": {
+      "id": "37ea2acf-8995-4909-bdf2-869d3ed08d5b",
+      "object": "chat.completion",
+      "created": 1791361068,
+      "model": "deepseek-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"rule\":{\"title\":\"招商银行财报披露前3天提醒\",\"symbol\":\"600036.SH\",\"logic\":\"all\",\"conditions\":[{\"kind\":\"calendar\",\"daysBefore\":3}],\"intervalMin\":60,\"cooldownMin\":30},\"questions\":[],\"warnings\":[\"未指定冷却时间，默认30分钟。\",\"calendar条件按财报披露日前N天（按24小时向上取整）判断。\"]}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 89,
+        "total_tokens": 724,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 251
+      },
+      "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+    }
+  },
+  {
+    "trial": 3,
+    "mode": "template",
+    "raw": {
+      "id": "afb6601b-224a-4e4b-bd45-97f7052ce824",
+      "object": "chat.completion",
+      "created": 1791361069,
+      "model": "deepseek-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"rule\":{\"title\":\"招商银行财报披露前3天提醒\",\"symbol\":\"600036.SH\",\"logic\":\"all\",\"conditions\":[{\"kind\":\"calendar\",\"daysBefore\":3}],\"intervalMin\":60,\"cooldownMin\":30},\"questions\":[],\"warnings\":[\"未指定冷却时间，默认30分钟。\",\"calendar条件按财报披露日前N天（按24小时向上取整）判断。\"]}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 89,
+        "total_tokens": 724,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 251
+      },
+      "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+    }
+  },
+  {
+    "trial": 4,
+    "mode": "template",
+    "raw": {
+      "id": "04b8b87a-920f-4a82-82b0-176e4d54cd41",
+      "object": "chat.completion",
+      "created": 1791361071,
+      "model": "deepseek-flash",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"rule\":{\"title\":\"招商银行财报披露前3天提醒\",\"symbol\":\"600036.SH\",\"logic\":\"all\",\"conditions\":[{\"kind\":\"calendar\",\"daysBefore\":3}],\"intervalMin\":60,\"cooldownMin\":30},\"questions\":[],\"warnings\":[\"未指定冷却时间，默认30分钟。\",\"calendar条件按财报披露日前N天（按24小时向上取整）判断。\"]}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 89,
+        "total_tokens": 724,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 251
+      },
+      "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+    }
+  }
+]
