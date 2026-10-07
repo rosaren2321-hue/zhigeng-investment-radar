@@ -6,7 +6,7 @@ async function handle(request:Request){
  const url=new URL(request.url);const parts=url.pathname.replace(/^\/api\//,'').split('/');const cookie=request.headers.get('cookie')??'';const existing=cookie.match(/(?:^|;\s*)radar_session=([a-f0-9-]{36})(?:;|$)/)?.[1];const session=existing??crypto.randomUUID();const auth=request.headers.get('oai-authenticated-user-id');const owner=auth?`user:${auth}`:`visitor:${session}`;
  const headers:Record<string,string>={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
  if(!existing)headers['Set-Cookie']=`radar_session=${session}; Path=/; HttpOnly; SameSite=Strict; Max-Age=2592000${url.protocol==='https:'?'; Secure':''}`;
- const respond=(data:unknown,status=200)=>Response.json(data,{status,headers});
+ const respond=(data:unknown,status=200)=>new Response(JSON.stringify(data,(key,value)=>key==='owner'?undefined:value),{status,headers:{...headers,'Content-Type':'application/json; charset=utf-8'}});
  try{
   if(parts[0]==='cron'){
    if(request.method!=='POST')return respond({error:'Method not allowed'},405);

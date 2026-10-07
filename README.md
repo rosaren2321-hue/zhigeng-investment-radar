@@ -1,5 +1,7 @@
 # 知更 · 投资风险雷达
 
+[在线体验](https://watchlane-investment-radar.rosaren2321.chatgpt.site) · [源码仓库](https://github.com/rosaren2321-hue/zhigeng-investment-radar)
+
 把自然语言关注点转换为可检查、可修改、持续运行的监控任务；每次触发或未触发都能查到规则版本与数据证据。
 
 > **本项目目前使用明确标注的合成演示数据。** 不代表实时股票价格、真实公告、市场热度或实际财报日历。未取得扶摇 / iFinD 的访问权限，不假称已接通。
@@ -70,7 +72,7 @@ node tests/integration.mjs
 
 - `tests/engine.test.ts`：35 项纯规则、边界、异常与模型接口模拟测试。
 - `tests/integration.mjs`：23 项真实本地 API / D1 集成测试，涵盖持久化、隔离、CSRF、版本、并发去重及导出。
-- 测试报告：`docs/unit-test-results.txt`、`docs/integration-test-results.json`。
+- 测试报告：`docs/unit-test-results.txt`、`docs/local-integration-test-results.json`、`docs/production-integration-test-results.json`。
 - 浏览器验证、线上调度与真实模型测试结果另外记录，不能把模拟测试当成真实供应商验证。
 
 ## 已知边界与未做事项

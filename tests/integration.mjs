@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const base=process.env.RADAR_TEST_URL||'http://127.0.0.1:5173';
-function client(){let cookie='';return async(path,method='GET',body)=>{const r=await fetch(base+'/api/'+path,{method,headers:{...(cookie?{Cookie:cookie}:{}),...(method==='GET'?{}:{Origin:base,'Content-Type':'application/json'})},...(method==='GET'?{}:{body:JSON.stringify(body??{})})});const c=r.headers.get('set-cookie');if(c)cookie=c.split(';')[0];return {status:r.status,data:await r.json()};};}
+function client(){const cookies=new Map();return async(path,method='GET',body)=>{const r=await fetch(base+'/api/'+path,{method,headers:{...(cookies.size?{Cookie:Array.from(cookies.values()).join('; ')}:{}),...(method==='GET'?{}:{Origin:base,'Content-Type':'application/json'})},...(method==='GET'?{}:{body:JSON.stringify(body??{})})});for(const c of r.headers.getSetCookie()){const pair=c.split(';')[0];cookies.set(pair.split('=')[0],pair);}return {status:r.status,data:await r.json()};};}
 const a=client(),b=client(),results=[];
 async function check(name,fn){try{await fn();results.push({name,passed:true});console.log('PASS',name);}catch(e){results.push({name,passed:false,error:e.message});console.error('FAIL',name,e.message);}}
 const initial=(await a('state')).data;const other=(await b('state')).data;const task=initial.tasks[0];
@@ -30,4 +30,4 @@ if(made){
  await a('tasks/'+made.id,'PATCH',{enabled:false,version:3});
 }
 await check('交易执行被拒绝且无任务创建',async()=>{const before=(await a('state')).data.tasks.length;const r=await a('compile','POST',{text:'自动买入贵州茅台'});assert.equal(r.data.refused,true);assert.equal((await a('state')).data.tasks.length,before)});
-const report={testedAt:new Date().toISOString(),target:base,passed:results.filter(x=>x.passed).length,total:results.length,results};fs.writeFileSync('docs/integration-test-results.json',JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,total:report.total}));if(report.passed!==report.total)process.exitCode=1;
+const report={testedAt:new Date().toISOString(),target:base,passed:results.filter(x=>x.passed).length,total:results.length,results};fs.writeFileSync(base.includes('127.0.0.1')?'docs/local-integration-test-results.json':'docs/production-integration-test-results.json',JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,total:report.total}));if(report.passed!==report.total)process.exitCode=1;
