@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {compile} from '../lib/radar/compiler.ts';
+import {compile,PROMPT_VERSION} from '../lib/radar/compiler.ts';
 process.loadEnvFile('.env.local');
 if(!process.env.DEEPSEEK_API_KEY)throw new Error('DeepSeek key is not configured');
 const cases=[
@@ -11,5 +11,6 @@ const cases=[
  {name:'不支持时段澄清',text:'贵州茅台低于1600元时提醒我，仅在A股交易时段每5分钟检查。',verify:r=>!r.rule&&r.questions.length>0},
 ];
 const results=[];
-for(const c of cases){const started=Date.now();const response=await compile(c.text,{key:process.env.DEEPSEEK_API_KEY,model:process.env.DEEPSEEK_MODEL});const passed=response.mode==='deepseek'&&!!c.verify(response);results.push({name:c.name,input:c.text,passed,durationMs:Date.now()-started,response});console.log(JSON.stringify({name:c.name,passed,mode:response.mode,durationMs:Date.now()-started}));}
-const report={testedAt:new Date().toISOString(),model:process.env.DEEPSEEK_MODEL||'deepseek-flash',promptVersion:'rule-compiler-v1.0',trialsPerCase:1,note:'有限验收样本；不是稳定准确率估计；未测试在线金融数据。',passed:results.filter(r=>r.passed).length,total:results.length,results};fs.writeFileSync('docs/live-ai-results.json',JSON.stringify(report,null,2));if(report.passed!==report.total)process.exitCode=1;
+const trialsPerCase=3;
+for(const c of cases)for(let trial=1;trial<=trialsPerCase;trial++){const started=Date.now();const response=await compile(c.text,{key:process.env.DEEPSEEK_API_KEY,model:process.env.DEEPSEEK_MODEL});const passed=response.mode==='deepseek'&&!!c.verify(response);results.push({name:c.name,trial,input:c.text,passed,durationMs:Date.now()-started,response});console.log(JSON.stringify({name:c.name,trial,passed,mode:response.mode,durationMs:Date.now()-started}));}
+const report={testedAt:new Date().toISOString(),model:process.env.DEEPSEEK_MODEL||'deepseek-flash',promptVersion:PROMPT_VERSION,trialsPerCase,note:'有限验收样本；不是稳定准确率估计；未测试在线金融数据。',passed:results.filter(r=>r.passed).length,total:results.length,results};fs.writeFileSync('docs/live-ai-results.json',JSON.stringify(report,null,2));if(report.passed!==report.total)process.exitCode=1;

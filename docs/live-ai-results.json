@@ -1,0 +1,683 @@
+{
+  "testedAt": "2026-10-07T08:19:00.994Z",
+  "model": "deepseek-flash",
+  "promptVersion": "rule-compiler-v1.2",
+  "trialsPerCase": 3,
+  "note": "有限验收样本；不是稳定准确率估计；未测试在线金融数据。",
+  "passed": 18,
+  "total": 18,
+  "results": [
+    {
+      "name": "明确价格",
+      "trial": 1,
+      "input": "贵州茅台低于1600元时提醒我，每5分钟检查，30分钟内不重复提醒。",
+      "passed": true,
+      "durationMs": 2733,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "贵州茅台价格低于1600元提醒",
+          "symbol": "600519.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "price",
+              "op": "lt",
+              "value": 1600
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "“低于1600元”按当前价格阈值判断，不是穿越检测。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 825,
+          "completion_tokens": 85,
+          "total_tokens": 910,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 313
+        }
+      }
+    },
+    {
+      "name": "明确价格",
+      "trial": 2,
+      "input": "贵州茅台低于1600元时提醒我，每5分钟检查，30分钟内不重复提醒。",
+      "passed": true,
+      "durationMs": 1725,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "贵州茅台价格低于1600元提醒",
+          "symbol": "600519.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "price",
+              "op": "lt",
+              "value": 1600
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "“低于1600元”按当前值阈值判断，不是穿越检测。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 825,
+          "completion_tokens": 85,
+          "total_tokens": 910,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 185
+        }
+      }
+    },
+    {
+      "name": "明确价格",
+      "trial": 3,
+      "input": "贵州茅台低于1600元时提醒我，每5分钟检查，30分钟内不重复提醒。",
+      "passed": true,
+      "durationMs": 1316,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "贵州茅台价格低于1600元提醒",
+          "symbol": "600519.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "price",
+              "op": "lt",
+              "value": 1600
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "“低于1600元”按当前价格阈值判断，不是穿越检测。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 825,
+          "completion_tokens": 85,
+          "total_tokens": 910,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 185
+        }
+      }
+    },
+    {
+      "name": "跌幅与热度组合",
+      "trial": 1,
+      "input": "沪深300日内跌幅超过2%，并且热度高于80时提醒我，每5分钟检查，冷却30分钟。",
+      "passed": true,
+      "durationMs": 1260,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "沪深300跌幅与热度监控",
+          "symbol": "000300.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "change",
+              "op": "lt",
+              "value": -2
+            },
+            {
+              "kind": "heat",
+              "op": "gt",
+              "value": 80
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "条件按当前值阈值判断，不是穿越检测。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 828,
+          "completion_tokens": 90,
+          "total_tokens": 918,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 188
+        }
+      }
+    },
+    {
+      "name": "跌幅与热度组合",
+      "trial": 2,
+      "input": "沪深300日内跌幅超过2%，并且热度高于80时提醒我，每5分钟检查，冷却30分钟。",
+      "passed": true,
+      "durationMs": 1131,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "沪深300跌幅与热度监控",
+          "symbol": "000300.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "change",
+              "op": "lt",
+              "value": -2
+            },
+            {
+              "kind": "heat",
+              "op": "gt",
+              "value": 80
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "条件按当前值阈值判断，不是穿越检测。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 828,
+          "completion_tokens": 90,
+          "total_tokens": 918,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 188
+        }
+      }
+    },
+    {
+      "name": "跌幅与热度组合",
+      "trial": 3,
+      "input": "沪深300日内跌幅超过2%，并且热度高于80时提醒我，每5分钟检查，冷却30分钟。",
+      "passed": true,
+      "durationMs": 1118,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "沪深300跌幅与热度监控",
+          "symbol": "000300.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "change",
+              "op": "lt",
+              "value": -2
+            },
+            {
+              "kind": "heat",
+              "op": "gt",
+              "value": 80
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "条件按当前值阈值判断，不是穿越检测。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 828,
+          "completion_tokens": 90,
+          "total_tokens": 918,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 188
+        }
+      }
+    },
+    {
+      "name": "公告关键词",
+      "trial": 1,
+      "input": "宁德时代出现回购公告时提醒我。",
+      "passed": true,
+      "durationMs": 821,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "宁德时代回购公告提醒",
+          "symbol": "300750.SZ",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "event",
+              "keyword": "回购"
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "未指定检查间隔，默认5分钟。",
+          "未指定冷却时间，默认30分钟。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 813,
+          "completion_tokens": 80,
+          "total_tokens": 893,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 173
+        }
+      }
+    },
+    {
+      "name": "公告关键词",
+      "trial": 2,
+      "input": "宁德时代出现回购公告时提醒我。",
+      "passed": true,
+      "durationMs": 1227,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "宁德时代回购公告提醒",
+          "symbol": "300750.SZ",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "event",
+              "keyword": "回购"
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "未指定检查间隔，默认5分钟。",
+          "未指定冷却时间，默认30分钟。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 813,
+          "completion_tokens": 80,
+          "total_tokens": 893,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 173
+        }
+      }
+    },
+    {
+      "name": "公告关键词",
+      "trial": 3,
+      "input": "宁德时代出现回购公告时提醒我。",
+      "passed": true,
+      "durationMs": 948,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "宁德时代回购公告提醒",
+          "symbol": "300750.SZ",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "event",
+              "keyword": "回购"
+            }
+          ],
+          "intervalMin": 5,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "未指定检查间隔，默认5分钟。",
+          "未指定冷却时间，默认30分钟。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 813,
+          "completion_tokens": 80,
+          "total_tokens": 893,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 173
+        }
+      }
+    },
+    {
+      "name": "财报提前天数",
+      "trial": 1,
+      "input": "招商银行财报发布前3天提醒我，每60分钟检查。",
+      "passed": true,
+      "durationMs": 1114,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "招商银行财报日历",
+          "symbol": "600036.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "calendar",
+              "daysBefore": 3
+            }
+          ],
+          "intervalMin": 60,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "未指定冷却时间，默认30分钟。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 819,
+          "completion_tokens": 70,
+          "total_tokens": 889,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 179
+        }
+      }
+    },
+    {
+      "name": "财报提前天数",
+      "trial": 2,
+      "input": "招商银行财报发布前3天提醒我，每60分钟检查。",
+      "passed": true,
+      "durationMs": 1030,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "招商银行财报日历",
+          "symbol": "600036.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "calendar",
+              "daysBefore": 3
+            }
+          ],
+          "intervalMin": 60,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "未指定冷却时间，默认30分钟。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 819,
+          "completion_tokens": 70,
+          "total_tokens": 889,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 179
+        }
+      }
+    },
+    {
+      "name": "财报提前天数",
+      "trial": 3,
+      "input": "招商银行财报发布前3天提醒我，每60分钟检查。",
+      "passed": true,
+      "durationMs": 789,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": {
+          "title": "招商银行财报日历",
+          "symbol": "600036.SH",
+          "logic": "all",
+          "conditions": [
+            {
+              "kind": "calendar",
+              "daysBefore": 3
+            }
+          ],
+          "intervalMin": 60,
+          "cooldownMin": 30
+        },
+        "questions": [],
+        "warnings": [
+          "未指定冷却时间，默认30分钟。"
+        ],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 819,
+          "completion_tokens": 70,
+          "total_tokens": 889,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 179
+        }
+      }
+    },
+    {
+      "name": "模糊阈值澄清",
+      "trial": 1,
+      "input": "贵州茅台大跌时提醒我。",
+      "passed": true,
+      "durationMs": 858,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请给出“大跌”的具体阈值，例如日内跌幅百分比（如跌幅超过5%）或具体价格（如跌破1500元）。"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 811,
+          "completion_tokens": 48,
+          "total_tokens": 859,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 171
+        }
+      }
+    },
+    {
+      "name": "模糊阈值澄清",
+      "trial": 2,
+      "input": "贵州茅台大跌时提醒我。",
+      "passed": true,
+      "durationMs": 1217,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请给出“大跌”的具体阈值，例如日内跌幅百分比（如跌幅超过5%）或具体价格（如跌破1500元）。"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 811,
+          "completion_tokens": 48,
+          "total_tokens": 859,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 171
+        }
+      }
+    },
+    {
+      "name": "模糊阈值澄清",
+      "trial": 3,
+      "input": "贵州茅台大跌时提醒我。",
+      "passed": true,
+      "durationMs": 729,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请给出“大跌”的具体阈值，例如日内跌幅百分比（如跌幅超过5%）或具体价格（如跌破1500元）。"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 811,
+          "completion_tokens": 48,
+          "total_tokens": 859,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 171
+        }
+      }
+    },
+    {
+      "name": "不支持时段澄清",
+      "trial": 1,
+      "input": "贵州茅台低于1600元时提醒我，仅在A股交易时段每5分钟检查。",
+      "passed": true,
+      "durationMs": 765,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请确认是否接受全天按分钟检查（不支持仅A股交易时段检查）？"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 824,
+          "completion_tokens": 38,
+          "total_tokens": 862,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 184
+        }
+      }
+    },
+    {
+      "name": "不支持时段澄清",
+      "trial": 2,
+      "input": "贵州茅台低于1600元时提醒我，仅在A股交易时段每5分钟检查。",
+      "passed": true,
+      "durationMs": 1147,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请确认是否接受全天按分钟检查（不支持仅A股交易时段检查）？"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 824,
+          "completion_tokens": 38,
+          "total_tokens": 862,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 184
+        }
+      }
+    },
+    {
+      "name": "不支持时段澄清",
+      "trial": 3,
+      "input": "贵州茅台低于1600元时提醒我，仅在A股交易时段每5分钟检查。",
+      "passed": true,
+      "durationMs": 975,
+      "response": {
+        "mode": "deepseek",
+        "model": "deepseek-flash",
+        "promptVersion": "rule-compiler-v1.2",
+        "rule": null,
+        "questions": [
+          "请确认是否接受全天按分钟检查（不支持仅A股交易时段检查）？"
+        ],
+        "warnings": [],
+        "refused": false,
+        "usage": {
+          "prompt_tokens": 824,
+          "completion_tokens": 38,
+          "total_tokens": 862,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 184
+        }
+      }
+    }
+  ]
+}
